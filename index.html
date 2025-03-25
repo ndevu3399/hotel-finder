@@ -44,6 +44,15 @@
             <label>
                 <input type="checkbox" id="availability-filter"> Only show available hotels
             </label>
+            <label for="search-hotel">Search by Name:</label>
+            <input type="text" id="search-hotel" placeholder="Search hotels...">
+
+            <label for="sort-price">Sort by Price:</label>
+            <select id="sort-price">
+                <option value="none">No Sorting</option>
+                <option value="low-high">Low to High</option>
+                <option value="high-low">High to Low</option>
+            </select>
         </fieldset>
     </section>
 
@@ -56,6 +65,6 @@
         <p>&copy; 2025 Hotel Finder. All Rights Reserved.</p>
     </footer>
     
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
 </body>
 </html>

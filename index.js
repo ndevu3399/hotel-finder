@@ -12,20 +12,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let allHotels = [];
 
-    function fetchHotels() {
-        hotelsContainer.innerHTML = "<p>Loading hotels...</p>"; 
+    async function fetchHotels() {
+        try {
+            hotelsContainer.innerHTML = "<p>Loading hotels...</p>"; 
+            const response = await fetch("http://localhost:3000/hotels");
+            if (!response.ok) throw new Error("Failed to fetch hotels");
 
-        fetch("http://localhost:3000/hotels")
-            .then(response => response.json())
-            .then(data => {
-                allHotels = data;
-                displayHotels(data);
-                populateCityOptions(data);
-            })
-            .catch(error => {
-                console.error("Error fetching hotels:", error);
-                hotelsContainer.innerHTML = "<p class='error'>Failed to load hotels. Please try again later.</p>";
-            });
+            const data = await response.json();
+            allHotels = data;
+            displayHotels(data);
+            populateCityOptions(data);
+        } catch (error) {
+            console.error("Error fetching hotels:", error);
+            hotelsContainer.innerHTML = "<p class='error'>Failed to load hotels. Please try again later.</p>";
+        }
     }
 
     function populateCityOptions(hotels) {
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function bookHotel(event) {
+    async function bookHotel(event) {
         const hotelId = event.target.dataset.id;
         const hotel = allHotels.find(h => h.id == hotelId);
 
@@ -83,41 +83,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
         hotel.rooms_available -= 1;
 
-        fetch(`http://localhost:3000/hotels/${hotelId}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ rooms_available: hotel.rooms_available })
-        })
-        .then(response => response.json())
-        .then(updatedHotel => {
+        try {
+            const response = await fetch(`http://localhost:3000/hotels/${hotelId}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ rooms_available: hotel.rooms_available })
+            });
+            if (!response.ok) throw new Error("Failed to update hotel");
+
+            const updatedHotel = await response.json();
             allHotels = allHotels.map(h => h.id == hotelId ? updatedHotel : h);
             displayHotels(allHotels);
-        })
-        .catch(error => console.error("Error updating hotel:", error));
+        } catch (error) {
+            console.error("Error updating hotel:", error);
+        }
     }
 
     function filterHotels() {
         let filteredHotels = allHotels;
 
-        
         if (citySelect.value !== "all") {
             filteredHotels = filteredHotels.filter(hotel => hotel.city === citySelect.value);
         }
 
-       
         if (availabilityFilter.checked) {
             filteredHotels = filteredHotels.filter(hotel => hotel.rooms_available > 0);
         }
 
-       
         const searchQuery = searchInput.value.toLowerCase();
         if (searchQuery) {
             filteredHotels = filteredHotels.filter(hotel => hotel.name.toLowerCase().includes(searchQuery));
         }
 
-        
         if (sortSelect.value === "low-high") {
             filteredHotels.sort((a, b) => a.price_per_night - b.price_per_night);
+        } else if (sortSelect.value === "high-low") {
+            filteredHotels.sort((a, b) => b.price_per_night - a.price_per_night);
         }
 
         displayHotels(filteredHotels);
