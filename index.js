@@ -2,8 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const hotelsContainer = document.getElementById("hotels-list");
     const citySelect = document.getElementById("city-select");
     const availabilityFilter = document.getElementById("availability-filter");
+    const searchInput = document.getElementById("search-hotel");
+    const sortSelect = document.getElementById("sort-price");
 
-    if (!hotelsContainer || !citySelect || !availabilityFilter) {
+    if (!hotelsContainer || !citySelect || !availabilityFilter || !searchInput || !sortSelect) {
         console.error("One or more required elements are missing.");
         return;
     }
@@ -11,6 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let allHotels = [];
 
     function fetchHotels() {
+        hotelsContainer.innerHTML = "<p>Loading hotels...</p>"; 
+
         fetch("http://localhost:3000/hotels")
             .then(response => response.json())
             .then(data => {
@@ -18,12 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 displayHotels(data);
                 populateCityOptions(data);
             })
-            .catch(error => console.error("Error fetching hotels:", error));
+            .catch(error => {
+                console.error("Error fetching hotels:", error);
+                hotelsContainer.innerHTML = "<p class='error'>Failed to load hotels. Please try again later.</p>";
+            });
     }
 
     function populateCityOptions(hotels) {
         const cities = new Set(hotels.map(hotel => hotel.city));
-
         citySelect.innerHTML = '<option value="all">All Cities</option>';
 
         cities.forEach(city => {
@@ -93,12 +99,25 @@ document.addEventListener("DOMContentLoaded", () => {
     function filterHotels() {
         let filteredHotels = allHotels;
 
+        
         if (citySelect.value !== "all") {
             filteredHotels = filteredHotels.filter(hotel => hotel.city === citySelect.value);
         }
 
+       
         if (availabilityFilter.checked) {
             filteredHotels = filteredHotels.filter(hotel => hotel.rooms_available > 0);
+        }
+
+       
+        const searchQuery = searchInput.value.toLowerCase();
+        if (searchQuery) {
+            filteredHotels = filteredHotels.filter(hotel => hotel.name.toLowerCase().includes(searchQuery));
+        }
+
+        
+        if (sortSelect.value === "low-high") {
+            filteredHotels.sort((a, b) => a.price_per_night - b.price_per_night);
         }
 
         displayHotels(filteredHotels);
@@ -106,6 +125,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     citySelect.addEventListener("change", filterHotels);
     availabilityFilter.addEventListener("change", filterHotels);
+    searchInput.addEventListener("input", filterHotels);
+    sortSelect.addEventListener("change", filterHotels);
 
     fetchHotels();
 });

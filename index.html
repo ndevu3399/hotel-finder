@@ -11,7 +11,6 @@
         <nav>
             <h1>Hotel Finder</h1>
             <ul>
-                <li><a href="#search">Search</a></li>
                 <li><a href="#hotels">Hotels</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -20,34 +19,38 @@
 
     <section id="search" class="hero">
         <h2>Find the Best Hotels</h2>
-        <input type="text" placeholder="Enter a city" id="city-search">
-        
-        <label for="check-in-date">Check-in:</label>
-        <input type="date" id="check-in-date">
-        
-        <label for="check-out-date">Check-out:</label>
-        <input type="date" id="check-out-date">
+        <form id="search-form">
+            <label for="city-search">City:</label>
+            <input type="text" id="city-search" list="city-options" placeholder="Enter a city">
+            <datalist id="city-options"></datalist>
 
-        <button id="search-btn">Search</button>
-    </section>
-
-    <section id="hotels" class="hotel-list">
-        <h2>Available Hotels</h2>
-        <div id="hotels-list">
+            <label for="check-in-date">Check-in:</label>
+            <input type="date" id="check-in-date">
             
-        </div>
+            <label for="check-out-date">Check-out:</label>
+            <input type="date" id="check-out-date">
+
+            <button type="submit">Search</button>
+        </form>
     </section>
 
-    <select id="city-select">
-        <option value="all">All Cities</option>
-        <option value="Nairobi">Nairobi</option>
-        <option value="Mombasa">Mombasa</option>
-        <option value="Kisumu">Kisumu</option>
-    </select>
-    
-    <input type="checkbox" id="availability-filter"> Only show available hotels
+    <section id="filters">
+        <h2>Filter Hotels</h2>
+        <fieldset>
+            <label for="city-select">City:</label>
+            <select id="city-select">
+                <option value="all">All Cities</option>
+            </select>
+            <label>
+                <input type="checkbox" id="availability-filter"> Only show available hotels
+            </label>
+        </fieldset>
+    </section>
 
-    <div id="hotels-list"></div>
+    <section id="hotels">
+        <h2>Available Hotels</h2>
+        <ul id="hotels-list" aria-live="polite"></ul>
+    </section>
 
     <footer>
         <p>&copy; 2025 Hotel Finder. All Rights Reserved.</p>
