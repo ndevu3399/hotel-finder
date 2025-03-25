@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Finder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Hotel Finder</h1>
+            <ul>
+                <li><a href="#search">Search</a></li>
+                <li><a href="#hotels">Hotels</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="search" class="hero">
+        <h2>Find the Best Hotels</h2>
+        <input type="text" placeholder="Enter a city" id="city-search">
+        
+        <label for="check-in-date">Check-in:</label>
+        <input type="date" id="check-in-date">
+        
+        <label for="check-out-date">Check-out:</label>
+        <input type="date" id="check-out-date">
+
+        <button id="search-btn">Search</button>
+    </section>
+
+    <section id="hotels" class="hotel-list">
+        <h2>Available Hotels</h2>
+        <div id="hotels-list">
+            <!-- Hotels will be dynamically displayed here -->
+        </div>
+    </section>
+
+    <select id="city-select">
+        <option value="all">All Cities</option>
+        <option value="Nairobi">Nairobi</option>
+        <option value="Mombasa">Mombasa</option>
+        <option value="Kisumu">Kisumu</option>
+    </select>
+    
+    <input type="checkbox" id="availability-filter"> Only show available hotels
+
+    <div id="hotels-list"></div>
+
+    <footer>
+        <p>&copy; 2025 Hotel Finder. All Rights Reserved.</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>
