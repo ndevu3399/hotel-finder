@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const disabledAttr = isFullyBooked ? "disabled" : "";
 
             hotelCard.innerHTML = `
+                <img src="${hotel.image}" alt="${hotel.name}" class="hotel-image">
                 <h3>${hotel.name}</h3>
                 <p>City: ${hotel.city}</p>
                 <p>Rooms Available: ${roomsText}</p>
