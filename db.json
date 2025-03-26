@@ -6,7 +6,7 @@
       "location": "Nairobi",
       "price": 120,
       "rooms_available": 0,
-      "image": "images/nairobi1.jpg"
+      "image": "https://pin.it/3c4MziJQD"
     },
     {
       "id": "2",
@@ -14,7 +14,7 @@
       "location": "Nairobi",
       "price": 150,
       "rooms_available": 8,
-      "image": "images/nairobi2.jpg"
+      "image":"https://pin.it/4ho2MbYqU"
     },
     {
       "id": "3",
@@ -22,7 +22,7 @@
       "location": "Nairobi",
       "price": 100,
       "rooms_available": 12,
-      "image": "images/nairobi3.jpg"
+      "image": "https://pin.it/5Bei7pTU8"
     },
     {
       "id": "4",
@@ -30,7 +30,7 @@
       "location": "Nairobi",
       "price": 180,
       "rooms_available": 5,
-      "image": "images/nairobi4.jpg"
+      "image": "https://pin.it/6CnQGzZtI"
     },
     {
       "id": "5",
@@ -38,7 +38,7 @@
       "location": "Mombasa",
       "price": 200,
       "rooms_available": 7,
-      "image": "images/mombasa1.jpg"
+      "image": "https://pin.it/5q6xCd580"
     },
     {
       "id": "6",
@@ -46,7 +46,7 @@
       "location": "Mombasa",
       "price": 170,
       "rooms_available": 6,
-      "image": "images/mombasa2.jpg"
+      "image": "https://pin.it/5q6xCd580"
     },
     {
       "id": "7",
@@ -54,7 +54,7 @@
       "location": "Mombasa",
       "price": 220,
       "rooms_available": 9,
-      "image": "images/mombasa3.jpg"
+      "image": "https://pin.it/2ee8LrAUr"
     },
     {
       "id": "8",
@@ -62,7 +62,7 @@
       "location": "Mombasa",
       "price": 250,
       "rooms_available": 4,
-      "image": "images/mombasa4.jpg"
+      "image": "https://pin.it/6YEBFhSuQ"
     },
     {
       "id": "9",
@@ -70,7 +70,7 @@
       "location": "Kisumu",
       "price": 140,
       "rooms_available": 6,
-      "image": "images/kisumu1.jpg"
+      "image": "https://pin.it/4lrga90iJ"
     },
     {
       "id": "10",
@@ -78,7 +78,7 @@
       "location": "Kisumu",
       "price": 130,
       "rooms_available": 8,
-      "image": "images/kisumu2.jpg"
+      "image": "https://pin.it/7e3c9A1MI"
     },
     {
       "id": "11",
@@ -86,7 +86,7 @@
       "location": "Kisumu",
       "price": 160,
       "rooms_available": 5,
-      "image": "images/kisumu3.jpg"
+      "image": "https://pin.it/6uSErZoBP"
     },
     {
       "id": "12",
@@ -94,7 +94,7 @@
       "location": "Kisumu",
       "price": 180,
       "rooms_available": 7,
-      "image": "images/kisumu4.jpg"
+      "image": "https://pin.it/414k8QhTB"
     },
     {
       "id": "13",
@@ -102,7 +102,7 @@
       "location": "Nakuru",
       "price": 150,
       "rooms_available": 9,
-      "image": "images/nakuru1.jpg"
+      "image": "https://pin.it/6r9ClF3TP"
     },
     {
       "id": "14",
@@ -110,7 +110,7 @@
       "location": "Nakuru",
       "price": 140,
       "rooms_available": 6,
-      "image": "images/nakuru2.jpg"
+      "image": "https://pin.it/5Dr5NG12I"
     },
     {
       "id": "15",
@@ -118,7 +118,7 @@
       "location": "Nakuru",
       "price": 170,
       "rooms_available": 5,
-      "image": "images/nakuru3.jpg"
+      "image": "https://pin.it/6Q1mENV9r"
     },
     {
       "id": "16",
@@ -126,7 +126,7 @@
       "location": "Nakuru",
       "price": 200,
       "rooms_available": 3,
-      "image": "images/nakuru4.jpg"
+      "image": "https://pin.it/6rBhCUvKJ"
     }
   ]
 }
