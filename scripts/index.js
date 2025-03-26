@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const data = await response.json();
             allHotels = data;
-            displayHotels(data);
             populateCityOptions(data);
+            filterHotels(); // Display hotels based on the selected city
         } catch (error) {
             console.error("Error fetching hotels:", error);
             hotelsContainer.innerHTML = "<p class='error'>Failed to load hotels. Please try again later.</p>";
@@ -38,6 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
             option.textContent = city;
             citySelect.appendChild(option);
         });
+
+        // Automatically filter hotels based on the first available city
+        if (cities.size > 0) {
+            citySelect.value = [...cities][0];
+        }
     }
 
     function displayHotels(hotels) {
@@ -53,11 +58,15 @@ document.addEventListener("DOMContentLoaded", () => {
             hotelCard.classList.add("hotel-card");
 
             const isFullyBooked = hotel.rooms_available === 0;
-            const roomsText = isFullyBooked ? '<span class="fully-booked">Fully Booked</span>' : `${hotel.rooms_available}`;
+            const roomsText = isFullyBooked 
+                ? '<span class="fully-booked">Fully Booked</span>' 
+                : `${hotel.rooms_available}`;
             const disabledAttr = isFullyBooked ? "disabled" : "";
 
+            const imageUrl = hotel.image ? hotel.image : "assets/images/default-hotel.jpg";
+
             hotelCard.innerHTML = `
-                <img src="${hotel.image}" alt="${hotel.name}" class="hotel-image">
+                <img src="${imageUrl}" alt="${hotel.name}" class="hotel-image">
                 <h3>${hotel.name}</h3>
                 <p>City: ${hotel.city}</p>
                 <p>Rooms Available: ${roomsText}</p>
@@ -94,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const updatedHotel = await response.json();
             allHotels = allHotels.map(h => h.id == hotelId ? updatedHotel : h);
-            displayHotels(allHotels);
+            filterHotels();
         } catch (error) {
             console.error("Error updating hotel:", error);
         }
