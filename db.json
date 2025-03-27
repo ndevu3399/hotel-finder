@@ -4,71 +4,61 @@
       "id": 1,
       "name": "Sunset Resort",
       "price": 150,
-      "available": true,
-      "image": "images/hotel1.jpg"
+      "available": true
     },
     {
       "id": 2,
       "name": "Mountain Inn",
       "price": 90,
-      "available": false,
-      "image": "images/hotel2.jpg"
+      "available": false
     },
     {
       "id": 3,
       "name": "Coastal Haven",
       "price": 200,
-      "available": true,
-      "image": "images/hotel3.jpg"
+      "available": true
     },
     {
       "id": 4,
       "name": "City Lights Hotel",
       "price": 120,
-      "available": false,
-      "image": "images/hotel4.jpg"
+      "available": false
     },
     {
       "id": 5,
       "name": "Green Valley Lodge",
       "price": 80,
-      "available": true,
-      "image": "images/hotel5.jpg"
+      "available": true
     },
     {
       "id": 6,
       "name": "Royal Palace",
       "price": 300,
-      "available": true,
-      "image": "images/hotel6.jpg"
+      "available": true
     },
     {
       "id": 7,
       "name": "Desert Oasis",
       "price": 110,
-      "available": false,
-      "image": "images/hotel7.jpg"
+      "available": false
     },
     {
       "id": 8,
       "name": "Snowy Peaks Lodge",
       "price": 140,
-      "available": true,
-      "image": "images/hotel8.jpg"
+      "available": true
     },
     {
       "id": 9,
       "name": "Tropical Retreat",
       "price": 250,
-      "available": true,
-      "image": "images/hotel9.jpg"
+      "available": true
     },
     {
       "id": 10,
       "name": "Downtown Suites",
       "price": 95,
-      "available": false,
-      "image": "images/hotel10.jpg"
+      "available": false
     }
   ]
 }
