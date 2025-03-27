@@ -1,116 +1,72 @@
-{
-  "hotels": [
-    {
-      "id": "1",
-      "name": "Nairobi Grand Hotel",
-      "location": "Nairobi",
-      "price": 120,
-      "rooms_available": 0
-    },
-    {
-      "id": "2",
-      "name": "Skyline Suites Nairobi",
-      "location": "Nairobi",
-      "price": 150,
-      "rooms_available": 8
-    },
-    {
-      "id": "3",
-      "name": "Serene Garden Hotel",
-      "location": "Nairobi",
-      "price": 100,
-      "rooms_available": 12
-    },
-    {
-      "id": "4",
-      "name": "Elite Stay Nairobi",
-      "location": "Nairobi",
-      "price": 180,
-      "rooms_available": 5
-    },
-    {
-      "id": "5",
-      "name": "Mombasa Beach Resort",
-      "location": "Mombasa",
-      "price": 200,
-      "rooms_available": 7
-    },
-    {
-      "id": "6",
-      "name": "Coastal Comfort Hotel",
-      "location": "Mombasa",
-      "price": 170,
-      "rooms_available": 6
-    },
-    {
-      "id": "7",
-      "name": "Golden Sands Retreat",
-      "location": "Mombasa",
-      "price": 220,
-      "rooms_available": 9
-    },
-    {
-      "id": "8",
-      "name": "Seaview Paradise",
-      "location": "Mombasa",
-      "price": 250,
-      "rooms_available": 4
-    },
-    {
-      "id": "9",
-      "name": "Kisumu Lakefront Hotel",
-      "location": "Kisumu",
-      "price": 140,
-      "rooms_available": 6
-    },
-    {
-      "id": "10",
-      "name": "Sunset Haven Kisumu",
-      "location": "Kisumu",
-      "price": 130,
-      "rooms_available": 8
-    },
-    {
-      "id": "11",
-      "name": "Serenity Bay Kisumu",
-      "location": "Kisumu",
-      "price": 160,
-      "rooms_available": 5
-    },
-    {
-      "id": "12",
-      "name": "Lakeview Retreat",
-      "location": "Kisumu",
-      "price": 180,
-      "rooms_available": 7
-    },
-    {
-      "id": "13",
-      "name": "Nakuru Safari Lodge",
-      "location": "Nakuru",
-      "price": 150,
-      "rooms_available": 9
-    },
-    {
-      "id": "14",
-      "name": "Rift Valley Comfort",
-      "location": "Nakuru",
-      "price": 140,
-      "rooms_available": 6
-    },
-    {
-      "id": "15",
-      "name": "Wild Escape Nakuru",
-      "location": "Nakuru",
-      "price": 170,
-      "rooms_available": 5
-    },
-    {
-      "id": "16",
-      "name": "Savannah Resort",
-      "location": "Nakuru",
-      "price": 200,
-      "rooms_available": 3
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "name": "Sunset Resort",
+    "price": 150,
+    "availability": true,
+    "image": "sunset-resort.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Mountain Inn",
+    "price": 90,
+    "availability": false,
+    "image": "mountain-inn.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Coastal Haven",
+    "price": 200,
+    "availability": true,
+    "image": "coastal-haven.jpg"
+  },
+  {
+    "id": 4,
+    "name": "City Lights Hotel",
+    "price": 120,
+    "availability": false,
+    "image": "city-lights.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Green Valley Lodge",
+    "price": 80,
+    "availability": true,
+    "image": "green-valley.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Royal Palace",
+    "price": 300,
+    "availability": true,
+    "image": "royal-palace.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Desert Oasis",
+    "price": 110,
+    "availability": false,
+    "image": "desert-oasis.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Snowy Peaks Lodge",
+    "price": 140,
+    "availability": true,
+    "image": "snowy-peaks.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Tropical Retreat",
+    "price": 250,
+    "availability": true,
+    "image": "tropical-retreat.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Downtown Suites",
+    "price": 95,
+    "availability": false,
+    "image": "downtown-suites.jpg"
+  }
+]
