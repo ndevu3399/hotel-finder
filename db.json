@@ -4,61 +4,101 @@
       "id": 1,
       "name": "Sunset Resort",
       "price": 150,
-      "available": true
+      "available": true,
+      "totalRooms": 20,
+      "bookedRooms": 5
     },
     {
       "id": 2,
       "name": "Mountain Inn",
       "price": 90,
-      "available": false
+      "available": false,
+      "totalRooms": 15,
+      "bookedRooms": 15
     },
     {
       "id": 3,
       "name": "Coastal Haven",
       "price": 200,
-      "available": true
+      "available": true,
+      "totalRooms": 25,
+      "bookedRooms": 8
     },
     {
       "id": 4,
       "name": "City Lights Hotel",
       "price": 120,
-      "available": false
+      "available": false,
+      "totalRooms": 10,
+      "bookedRooms": 10
     },
     {
       "id": 5,
       "name": "Green Valley Lodge",
       "price": 80,
-      "available": true
+      "available": true,
+      "totalRooms": 30,
+      "bookedRooms": 2
     },
     {
       "id": 6,
       "name": "Royal Palace",
       "price": 300,
-      "available": true
+      "available": true,
+      "totalRooms": 50,
+      "bookedRooms": 10
     },
     {
       "id": 7,
       "name": "Desert Oasis",
       "price": 110,
-      "available": false
+      "available": false,
+      "totalRooms": 12,
+      "bookedRooms": 12
     },
     {
       "id": 8,
       "name": "Snowy Peaks Lodge",
       "price": 140,
-      "available": true
+      "available": true,
+      "totalRooms": 18,
+      "bookedRooms": 4
     },
     {
       "id": 9,
       "name": "Tropical Retreat",
       "price": 250,
-      "available": true
+      "available": true,
+      "totalRooms": 22,
+      "bookedRooms": 5
     },
     {
       "id": 10,
       "name": "Downtown Suites",
       "price": 95,
-      "available": false
+      "available": false,
+      "totalRooms": 8,
+      "bookedRooms": 8
+    }
+  ],
+  "bookings": [
+    {
+      "id": 1,
+      "hotelId": 1,
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "checkIn": "2025-04-01",
+      "checkOut": "2025-04-05",
+      "roomsBooked": 2
+    },
+    {
+      "id": 2,
+      "hotelId": 3,
+      "name": "Alice Smith",
+      "email": "alice@example.com",
+      "checkIn": "2025-04-10",
+      "checkOut": "2025-04-15",
+      "roomsBooked": 1
     }
   ]
 }
