@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     showLoading(false);
 });
 
-
 async function fetchHotels() {
     try {
         const response = await fetch(API_URL);
@@ -24,7 +23,6 @@ async function fetchHotels() {
     }
 }
 
-
 function displayHotels(hotels) {
     const hotelList = document.getElementById("hotel-list");
     hotelList.innerHTML = hotels.length ? "" : "<p>No hotels available.</p>";
@@ -33,13 +31,13 @@ function displayHotels(hotels) {
         const hotelCard = document.createElement("div");
         hotelCard.classList.add("hotel-card");
         hotelCard.innerHTML = `
-            <img src="${hotel.image}" alt="${hotel.name}">
+            <img src="./images/${hotel.image}" alt="${hotel.name}">
             <div class="hotel-info">
                 <h3>${hotel.name}</h3>
                 <p>Price: <strong>$${hotel.price}</strong> per night</p>
                 <p>Availability: 
-                    <span class="${hotel.available ? 'available' : 'unavailable'}">
-                        ${hotel.available ? "Available" : "Not Available"}
+                    <span class="${hotel.availability ? 'available' : 'unavailable'}">
+                        ${hotel.availability ? "Available" : "Not Available"}
                     </span>
                 </p>
                 <button class="delete-btn" data-id="${hotel.id}">Delete</button>
@@ -50,7 +48,6 @@ function displayHotels(hotels) {
 
     setupDeleteButtons();
 }
-
 
 function sortHotels(order) {
     let hotels = JSON.parse(localStorage.getItem("hotels")) || [];
@@ -63,16 +60,14 @@ function sortHotels(order) {
     return hotels;
 }
 
-
 function filterHotels(availability, hotels) {
     if (availability === "available") {
-        hotels = hotels.filter(hotel => hotel.available);
+        hotels = hotels.filter(hotel => hotel.availability);
     }
 
     localStorage.setItem("availabilityFilter", availability);
     return hotels;
 }
-
 
 function applyFilters() {
     const sortOrder = document.getElementById("sort").value;
@@ -85,12 +80,10 @@ function applyFilters() {
     displayHotels(hotels);
 }
 
-
 function setupEventListeners() {
     document.getElementById("filter-btn").addEventListener("click", applyFilters);
     document.getElementById("sort").addEventListener("change", applyFilters);
 }
-
 
 function applyStoredPreferences() {
     const sortOrder = localStorage.getItem("sortOrder") || "default";
@@ -102,7 +95,6 @@ function applyStoredPreferences() {
     applyFilters();
 }
 
-
 function setupDeleteButtons() {
     document.querySelectorAll(".delete-btn").forEach(button => {
         button.addEventListener("click", async (event) => {
@@ -113,7 +105,6 @@ function setupDeleteButtons() {
         });
     });
 }
-
 
 async function deleteHotel(hotelId) {
     try {
@@ -132,14 +123,12 @@ async function deleteHotel(hotelId) {
     }
 }
 
-
 function showLoading(isLoading) {
     const loadingElement = document.getElementById("loading");
     if (loadingElement) {
         loadingElement.style.display = isLoading ? "block" : "none";
     }
 }
-
 
 function showToast(message, type) {
     const toast = document.createElement("div");
