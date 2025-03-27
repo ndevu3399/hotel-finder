@@ -1,72 +1,74 @@
-[
-  {
-    "id": 1,
-    "name": "Sunset Resort",
-    "price": 150,
-    "availability": true,
-    "image": "sunset-resort.jpg"
-  },
-  {
-    "id": 2,
-    "name": "Mountain Inn",
-    "price": 90,
-    "availability": false,
-    "image": "mountain-inn.jpg"
-  },
-  {
-    "id": 3,
-    "name": "Coastal Haven",
-    "price": 200,
-    "availability": true,
-    "image": "coastal-haven.jpg"
-  },
-  {
-    "id": 4,
-    "name": "City Lights Hotel",
-    "price": 120,
-    "availability": false,
-    "image": "city-lights.jpg"
-  },
-  {
-    "id": 5,
-    "name": "Green Valley Lodge",
-    "price": 80,
-    "availability": true,
-    "image": "green-valley.jpg"
-  },
-  {
-    "id": 6,
-    "name": "Royal Palace",
-    "price": 300,
-    "availability": true,
-    "image": "royal-palace.jpg"
-  },
-  {
-    "id": 7,
-    "name": "Desert Oasis",
-    "price": 110,
-    "availability": false,
-    "image": "desert-oasis.jpg"
-  },
-  {
-    "id": 8,
-    "name": "Snowy Peaks Lodge",
-    "price": 140,
-    "availability": true,
-    "image": "snowy-peaks.jpg"
-  },
-  {
-    "id": 9,
-    "name": "Tropical Retreat",
-    "price": 250,
-    "availability": true,
-    "image": "tropical-retreat.jpg"
-  },
-  {
-    "id": 10,
-    "name": "Downtown Suites",
-    "price": 95,
-    "availability": false,
-    "image": "downtown-suites.jpg"
-  }
-]
+{
+  "hotels": [
+    {
+      "id": 1,
+      "name": "Sunset Resort",
+      "price": 150,
+      "availability": true,
+      "image": "sunset-resort.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Mountain Inn",
+      "price": 90,
+      "availability": false,
+      "image": "mountain-inn.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Coastal Haven",
+      "price": 200,
+      "availability": true,
+      "image": "coastal-haven.jpg"
+    },
+    {
+      "id": 4,
+      "name": "City Lights Hotel",
+      "price": 120,
+      "availability": false,
+      "image": "city-lights.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Green Valley Lodge",
+      "price": 80,
+      "availability": true,
+      "image": "green-valley.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Royal Palace",
+      "price": 300,
+      "availability": true,
+      "image": "royal-palace.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Desert Oasis",
+      "price": 110,
+      "availability": false,
+      "image": "desert-oasis.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Snowy Peaks Lodge",
+      "price": 140,
+      "availability": true,
+      "image": "snowy-peaks.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Tropical Retreat",
+      "price": 250,
+      "availability": true,
+      "image": "tropical-retreat.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Downtown Suites",
+      "price": 95,
+      "availability": false,
+      "image": "downtown-suites.jpg"
+    }
+  ]
+}
