@@ -3,42 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Finder</title>
+    <title>Luxury Hotel Finder</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>🏨 Hotel Finder</h1>
+    
+    <nav class="navbar">
+        <h1>🏨 Luxury Hotel Finder</h1>
+        <div class="controls">
+            <label for="sort-options">Sort by Price:</label>
+            <select id="sort-options">
+                <option value="default">Default</option>
+                <option value="low-to-high">Low to High</option>
+                <option value="high-to-low">High to Low</option>
+            </select>
+
+            <label for="availability">Filter:</label>
+            <select id="availability">
+                <option value="all">Show All</option>
+                <option value="available">Only Available</option>
+            </select>
+        </div>
+    </nav>
+
+    
+    <header class="hero">
+        <div class="hero-content">
+            <h2>Find the Perfect Stay</h2>
+            <p>Explore the finest hotels with luxury amenities and breathtaking views.</p>
+        </div>
     </header>
 
-    <div class="controls">
-        <label for="sort-options">Sort by Price:</label>
-        <select id="sort-options">
-            <option value="default">Default</option>
-            <option value="low-to-high">Low to High</option>
-            <option value="high-to-low">High to Low</option>
-        </select>
+    
+    <section id="hotel-list" class="hotel-container"></section>
 
-        <select id="sort">
-            <option value="low-to-high">Price: Low to High</option>
-            <option value="high-to-low">Price: High to Low</option>
-        </select>
-        
-        <select id="availability">
-            <option value="all">Show All</option>
-            <option value="available">Only Available</option>
-        </select>
-        
-        <div id="hotel-list"></div>
-        
-
-        <label for="filter-availability">
-            <input type="checkbox" id="filter-availability">
-            Show Available Hotels Only
-        </label>
-    </div>
-
-    <section id="hotel-list"></section>
+    
+    <footer class="footer">
+        <p>© 2025 Luxury Hotel Finder | Your dream stay, one click away.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
