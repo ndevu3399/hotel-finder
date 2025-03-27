@@ -4,71 +4,71 @@
       "id": 1,
       "name": "Sunset Resort",
       "price": 150,
-      "availability": true,
-      "image": "sunset-resort.jpg"
+      "available": true,
+      "image": "images/hotel1.jpg"
     },
     {
       "id": 2,
       "name": "Mountain Inn",
       "price": 90,
-      "availability": false,
-      "image": "mountain-inn.jpg"
+      "available": false,
+      "image": "images/hotel2.jpg"
     },
     {
       "id": 3,
       "name": "Coastal Haven",
       "price": 200,
-      "availability": true,
-      "image": "coastal-haven.jpg"
+      "available": true,
+      "image": "images/hotel3.jpg"
     },
     {
       "id": 4,
       "name": "City Lights Hotel",
       "price": 120,
-      "availability": false,
-      "image": "city-lights.jpg"
+      "available": false,
+      "image": "images/hotel4.jpg"
     },
     {
       "id": 5,
       "name": "Green Valley Lodge",
       "price": 80,
-      "availability": true,
-      "image": "green-valley.jpg"
+      "available": true,
+      "image": "images/hotel5.jpg"
     },
     {
       "id": 6,
       "name": "Royal Palace",
       "price": 300,
-      "availability": true,
-      "image": "royal-palace.jpg"
+      "available": true,
+      "image": "images/hotel6.jpg"
     },
     {
       "id": 7,
       "name": "Desert Oasis",
       "price": 110,
-      "availability": false,
-      "image": "desert-oasis.jpg"
+      "available": false,
+      "image": "images/hotel7.jpg"
     },
     {
       "id": 8,
       "name": "Snowy Peaks Lodge",
       "price": 140,
-      "availability": true,
-      "image": "snowy-peaks.jpg"
+      "available": true,
+      "image": "images/hotel8.jpg"
     },
     {
       "id": 9,
       "name": "Tropical Retreat",
       "price": 250,
-      "availability": true,
-      "image": "tropical-retreat.jpg"
+      "available": true,
+      "image": "images/hotel9.jpg"
     },
     {
       "id": 10,
       "name": "Downtown Suites",
       "price": 95,
-      "availability": false,
-      "image": "downtown-suites.jpg"
+      "available": false,
+      "image": "images/hotel10.jpg"
     }
   ]
 }
