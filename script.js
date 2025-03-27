@@ -1,37 +1,47 @@
 const API_URL = "http://localhost:3001/hotels"; 
 
-document.addEventListener("DOMContentLoaded", () => {
-    fetchHotels();
+document.addEventListener("DOMContentLoaded", async () => {
+    showLoading(true);
+    await fetchHotels();
     setupEventListeners();
+    showLoading(false);
 });
 
-// Fetch hotels from API
-function fetchHotels() {
-    fetch(API_URL)
-        .then(response => response.json())
-        .then(hotels => {
-            localStorage.setItem("hotels", JSON.stringify(hotels)); 
-            displayHotels(hotels);
-        })
-        .catch(error => console.error("Error fetching hotels:", error));
+
+async function fetchHotels() {
+    try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error("Failed to fetch hotels.");
+        
+        const hotels = await response.json();
+        localStorage.setItem("hotels", JSON.stringify(hotels));
+        displayHotels(hotels);
+    } catch (error) {
+        console.error("Error fetching hotels:", error);
+        showToast("Error fetching hotels. Please try again!", "error");
+    }
 }
 
 
 function displayHotels(hotels) {
     const hotelList = document.getElementById("hotel-list");
-    hotelList.innerHTML = ""; 
+    hotelList.innerHTML = hotels.length ? "" : "<p>No hotels available.</p>";
 
     hotels.forEach(hotel => {
         const hotelCard = document.createElement("div");
         hotelCard.classList.add("hotel-card");
         hotelCard.innerHTML = `
             <img src="${hotel.image}" alt="${hotel.name}">
-            <h3>${hotel.name}</h3>
-            <p>Price: $${hotel.price} per night</p>
-            <p>Availability: <span class="${hotel.available ? 'available' : 'not-available'}">
-                ${hotel.available ? "Available" : "Not Available"}
-            </span></p>
-            <button class="delete-btn" data-id="${hotel.id}">Delete</button>
+            <div class="hotel-info">
+                <h3>${hotel.name}</h3>
+                <p>Price: <strong>$${hotel.price}</strong> per night</p>
+                <p>Availability: 
+                    <span class="${hotel.available ? 'available' : 'unavailable'}">
+                        ${hotel.available ? "Available" : "Not Available"}
+                    </span>
+                </p>
+                <button class="delete-btn" data-id="${hotel.id}">Delete</button>
+            </div>
         `;
         hotelList.appendChild(hotelCard);
     });
@@ -43,13 +53,9 @@ function displayHotels(hotels) {
 function sortHotels(order) {
     let hotels = JSON.parse(localStorage.getItem("hotels")) || [];
     
-    if (order === "low-to-high") {
-        hotels.sort((a, b) => a.price - b.price);
-    } else if (order === "high-to-low") {
-        hotels.sort((a, b) => b.price - a.price);
-    }
+    hotels.sort((a, b) => order === "low-to-high" ? a.price - b.price : b.price - a.price);
 
-    localStorage.setItem("sortOrder", order); 
+    localStorage.setItem("sortOrder", order);
     displayHotels(hotels);
 }
 
@@ -59,64 +65,73 @@ function filterHotels(availability) {
 
     if (availability === "available") {
         hotels = hotels.filter(hotel => hotel.available);
-    } else if (availability === "all") {
-        hotels = JSON.parse(localStorage.getItem("hotels")); // Restore full list
     }
 
-    localStorage.setItem("availabilityFilter", availability); // Store filter preference
+    localStorage.setItem("availabilityFilter", availability);
     displayHotels(hotels);
 }
 
 
 function setupEventListeners() {
-    const sortSelect = document.getElementById("sort");
-    const filterSelect = document.getElementById("availability");
+    document.getElementById("sort").addEventListener("change", (e) => sortHotels(e.target.value));
+    document.getElementById("availability").addEventListener("change", (e) => filterHotels(e.target.value));
 
-    sortSelect.addEventListener("change", () => sortHotels(sortSelect.value));
-    filterSelect.addEventListener("change", () => filterHotels(filterSelect.value));
-
-    applyStoredPreferences(); 
+    applyStoredPreferences();
 }
 
 
 function applyStoredPreferences() {
-    const sortOrder = localStorage.getItem("sortOrder");
-    const availabilityFilter = localStorage.getItem("availabilityFilter");
+    const sortOrder = localStorage.getItem("sortOrder") || "low-to-high";
+    const availabilityFilter = localStorage.getItem("availabilityFilter") || "all";
 
-    if (sortOrder) {
-        document.getElementById("sort").value = sortOrder;
-        sortHotels(sortOrder);
-    }
-    if (availabilityFilter) {
-        document.getElementById("availability").value = availabilityFilter;
-        filterHotels(availabilityFilter);
-    }
+    document.getElementById("sort").value = sortOrder;
+    document.getElementById("availability").value = availabilityFilter;
+
+    sortHotels(sortOrder);
+    filterHotels(availabilityFilter);
 }
 
 
 function setupDeleteButtons() {
     document.querySelectorAll(".delete-btn").forEach(button => {
-        button.addEventListener("click", (event) => {
+        button.addEventListener("click", async (event) => {
             const hotelId = event.target.getAttribute("data-id");
-            deleteHotel(hotelId);
+            if (confirm("Are you sure you want to delete this hotel?")) {
+                await deleteHotel(hotelId);
+            }
         });
     });
 }
 
 
-function deleteHotel(hotelId) {
-    fetch(`${API_URL}/${hotelId}`, {
-        method: "DELETE"
-    })
-    .then(response => {
-        if (response.ok) {
-            let hotels = JSON.parse(localStorage.getItem("hotels")) || [];
-            hotels = hotels.filter(hotel => hotel.id !== parseInt(hotelId));
-            localStorage.setItem("hotels", JSON.stringify(hotels)); // Update localStorage
-            displayHotels(hotels); 
-        } else {
-            console.error("Failed to delete hotel.");
-        }
-    })
-    .catch(error => console.error("Error deleting hotel:", error));
+async function deleteHotel(hotelId) {
+    try {
+        const response = await fetch(`${API_URL}/${hotelId}`, { method: "DELETE" });
+        if (!response.ok) throw new Error("Failed to delete hotel.");
+        
+        let hotels = JSON.parse(localStorage.getItem("hotels")) || [];
+        hotels = hotels.filter(hotel => hotel.id !== parseInt(hotelId));
+        localStorage.setItem("hotels", JSON.stringify(hotels));
+
+        displayHotels(hotels);
+        showToast("Hotel deleted successfully!", "success");
+    } catch (error) {
+        console.error("Error deleting hotel:", error);
+        showToast("Error deleting hotel. Try again!", "error");
+    }
+}
+
+
+function showLoading(isLoading) {
+    document.getElementById("loading").style.display = isLoading ? "block" : "none";
+}
+
+
+function showToast(message, type) {
+    const toast = document.createElement("div");
+    toast.classList.add("toast", type);
+    toast.textContent = message;
+
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
 }
