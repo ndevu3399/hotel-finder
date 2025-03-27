@@ -4,10 +4,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     showLoading(true);
     await fetchHotels();
     setupEventListeners();
+    applyStoredPreferences();
     showLoading(false);
 });
 
-
+// Fetch hotels from API
 async function fetchHotels() {
     try {
         const response = await fetch(API_URL);
@@ -19,10 +20,11 @@ async function fetchHotels() {
     } catch (error) {
         console.error("Error fetching hotels:", error);
         showToast("Error fetching hotels. Please try again!", "error");
+        document.getElementById("hotel-list").innerHTML = "<p class='error'>⚠️ Failed to load hotels.</p>";
     }
 }
 
-
+// Display hotels
 function displayHotels(hotels) {
     const hotelList = document.getElementById("hotel-list");
     hotelList.innerHTML = hotels.length ? "" : "<p>No hotels available.</p>";
@@ -49,49 +51,58 @@ function displayHotels(hotels) {
     setupDeleteButtons();
 }
 
-
+// Sorting function
 function sortHotels(order) {
     let hotels = JSON.parse(localStorage.getItem("hotels")) || [];
     
-    hotels.sort((a, b) => order === "low-to-high" ? a.price - b.price : b.price - a.price);
+    if (order !== "default") {
+        hotels.sort((a, b) => order === "low-to-high" ? a.price - b.price : b.price - a.price);
+    }
 
     localStorage.setItem("sortOrder", order);
-    displayHotels(hotels);
+    return hotels;
 }
 
-
-function filterHotels(availability) {
-    let hotels = JSON.parse(localStorage.getItem("hotels")) || [];
-
+// Filtering function
+function filterHotels(availability, hotels) {
     if (availability === "available") {
         hotels = hotels.filter(hotel => hotel.available);
     }
 
     localStorage.setItem("availabilityFilter", availability);
+    return hotels;
+}
+
+// Search Button - Apply Sorting & Filtering
+function applyFilters() {
+    const sortOrder = document.getElementById("sort").value;
+    const availabilityFilter = document.getElementById("availability").value;
+
+    let hotels = JSON.parse(localStorage.getItem("hotels")) || [];
+    hotels = sortHotels(sortOrder);
+    hotels = filterHotels(availabilityFilter, hotels);
+
     displayHotels(hotels);
 }
 
-
+// Setup event listeners
 function setupEventListeners() {
-    document.getElementById("sort").addEventListener("change", (e) => sortHotels(e.target.value));
-    document.getElementById("availability").addEventListener("change", (e) => filterHotels(e.target.value));
-
-    applyStoredPreferences();
+    document.getElementById("filter-btn").addEventListener("click", applyFilters);
+    document.getElementById("sort").addEventListener("change", applyFilters);
 }
 
-
+// Apply stored preferences on page load
 function applyStoredPreferences() {
-    const sortOrder = localStorage.getItem("sortOrder") || "low-to-high";
+    const sortOrder = localStorage.getItem("sortOrder") || "default";
     const availabilityFilter = localStorage.getItem("availabilityFilter") || "all";
 
     document.getElementById("sort").value = sortOrder;
     document.getElementById("availability").value = availabilityFilter;
 
-    sortHotels(sortOrder);
-    filterHotels(availabilityFilter);
+    applyFilters();
 }
 
-
+// Setup delete buttons
 function setupDeleteButtons() {
     document.querySelectorAll(".delete-btn").forEach(button => {
         button.addEventListener("click", async (event) => {
@@ -103,7 +114,7 @@ function setupDeleteButtons() {
     });
 }
 
-
+// Delete hotel from API & UI
 async function deleteHotel(hotelId) {
     try {
         const response = await fetch(`${API_URL}/${hotelId}`, { method: "DELETE" });
@@ -121,12 +132,15 @@ async function deleteHotel(hotelId) {
     }
 }
 
-
+// Show or hide loading spinner
 function showLoading(isLoading) {
-    document.getElementById("loading").style.display = isLoading ? "block" : "none";
+    const loadingElement = document.getElementById("loading");
+    if (loadingElement) {
+        loadingElement.style.display = isLoading ? "block" : "none";
+    }
 }
 
-
+// Display toast message
 function showToast(message, type) {
     const toast = document.createElement("div");
     toast.classList.add("toast", type);
