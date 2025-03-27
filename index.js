@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function populateCityOptions(hotels) {
-        const cities = new Set(hotels.map(hotel => hotel.location)); // Fixed: Using 'location' instead of 'city'
+        const cities = new Set(hotels.map(hotel => hotel.location));
         citySelect.innerHTML = '<option value="all">All Cities</option>';
 
         cities.forEach(city => {
@@ -125,9 +125,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (sortSelect.value === "low-high") {
-            filteredHotels.sort((a, b) => a.price - b.price); // Fixed: Using 'price'
+            filteredHotels.sort((a, b) => a.price - b.price); 
         } else if (sortSelect.value === "high-low") {
-            filteredHotels.sort((a, b) => b.price - a.price); // Fixed: Using 'price'
+            filteredHotels.sort((a, b) => b.price - a.price); 
         }
 
         displayHotels(filteredHotels);
