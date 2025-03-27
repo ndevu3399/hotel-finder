@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const sortSelect = document.getElementById("sort");
     const filterCheckbox = document.getElementById("filter");
 
-    const API_URL = "http://localhost:3000/hotels";
+    const API_URL = "http://localhost:3001/hotels";
 
-    // Fetch hotels from db.json
+    
     function fetchHotels() {
         fetch(API_URL)
             .then(response => response.json())
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => console.error("Error fetching hotels:", error));
     }
 
-    // Display hotels
+    
     function displayHotels(hotels) {
         hotelList.innerHTML = "";
         hotels.forEach(hotel => {
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Sort hotels
+    
     function sortHotels(order) {
         let hotels = JSON.parse(localStorage.getItem("hotels")) || [];
         hotels.sort((a, b) => (order === "low-to-high" ? a.price - b.price : b.price - a.price));
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         displayHotels(hotels);
     }
 
-    // Filter hotels by availability
+    
     function filterHotels() {
         let hotels = JSON.parse(localStorage.getItem("hotels")) || [];
         if (filterCheckbox.checked) {
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         displayHotels(hotels);
     }
 
-    // Delete hotel
+    
     function deleteHotel(id) {
         fetch(`${API_URL}/${id}`, { method: "DELETE" })
             .then(() => {
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => console.error("Error deleting hotel:", error));
     }
 
-    // Event listeners
+    
     sortSelect.addEventListener("change", () => sortHotels(sortSelect.value));
     filterCheckbox.addEventListener("change", filterHotels);
     hotelList.addEventListener("click", (event) => {
@@ -72,6 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Load hotels on page load
+    
     fetchHotels();
 });
