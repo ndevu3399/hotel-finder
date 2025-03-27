@@ -4,8 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const availabilityFilter = document.getElementById("availability-filter");
     const searchInput = document.getElementById("search-hotel");
     const sortSelect = document.getElementById("sort-price");
-   
-
 
     if (!hotelsContainer || !citySelect || !availabilityFilter || !searchInput || !sortSelect) {
         console.error("One or more required elements are missing.");
@@ -64,14 +62,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 : `${hotel.rooms_available}`;
             const disabledAttr = isFullyBooked ? "disabled" : "";
 
-            const imageUrl = hotel.image ? hotel.image : "assets/images/default-hotel.jpg";
-
             hotelCard.innerHTML = `
-                <img src="${imageUrl}" alt="${hotel.name}" class="hotel-image">
                 <h3>${hotel.name}</h3>
-                <p>City: ${hotel.location}</p>  <!-- Fixed: Using 'location' -->
+                <p>City: ${hotel.location}</p>  
                 <p>Rooms Available: ${roomsText}</p>
-                <p>Price: $${hotel.price}/night</p> <!-- Fixed: Using 'price' instead of 'price_per_night' -->
+                <p>Price: $${hotel.price}/night</p>
                 <button class="book-btn" data-id="${hotel.id}" ${disabledAttr}>Book Now</button>
             `;
 
@@ -114,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let filteredHotels = allHotels;
 
         if (citySelect.value !== "all") {
-            filteredHotels = filteredHotels.filter(hotel => hotel.location === citySelect.value); // Fixed: Using 'location'
+            filteredHotels = filteredHotels.filter(hotel => hotel.location === citySelect.value);
         }
 
         if (availabilityFilter.checked) {
