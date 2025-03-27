@@ -103,7 +103,7 @@ function setupDeleteButtons() {
     });
 }
 
-// Delete a hotel
+
 function deleteHotel(hotelId) {
     fetch(`${API_URL}/${hotelId}`, {
         method: "DELETE"
@@ -113,7 +113,7 @@ function deleteHotel(hotelId) {
             let hotels = JSON.parse(localStorage.getItem("hotels")) || [];
             hotels = hotels.filter(hotel => hotel.id !== parseInt(hotelId));
             localStorage.setItem("hotels", JSON.stringify(hotels)); // Update localStorage
-            displayHotels(hotels); // Re-render hotels
+            displayHotels(hotels); 
         } else {
             console.error("Failed to delete hotel.");
         }
