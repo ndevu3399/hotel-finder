@@ -8,11 +8,12 @@
 </head>
 <body>
     
+    
     <nav class="navbar">
         <h1>🏨 Luxury Hotel Finder</h1>
         <div class="controls">
-            <label for="sort-options">Sort by Price:</label>
-            <select id="sort-options">
+            <label for="sort">Sort by Price:</label>
+            <select id="sort">
                 <option value="default">Default</option>
                 <option value="low-to-high">Low to High</option>
                 <option value="high-to-low">High to Low</option>
@@ -23,6 +24,8 @@
                 <option value="all">Show All</option>
                 <option value="available">Only Available</option>
             </select>
+
+            <button id="filter-btn">Search</button>
         </div>
     </nav>
 
@@ -38,6 +41,9 @@
     <section id="hotel-list" class="hotel-container"></section>
 
     
+    <div id="error-message" class="hidden">⚠️ Failed to load hotels. Please try again later.</div>
+
+   
     <footer class="footer">
         <p>© 2025 Luxury Hotel Finder | Your dream stay, one click away.</p>
     </footer>
