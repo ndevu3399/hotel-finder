@@ -1,12 +1,14 @@
-const API_URL = "http://localhost:3001/hotels"; 
+const API_URL = "http://localhost:3001/hotels";
 
 document.addEventListener("DOMContentLoaded", async () => {
     showLoading(true);
     await fetchHotels();
     setupEventListeners();
     applyStoredPreferences();
+    loadBookings();
     showLoading(false);
 });
+
 
 async function fetchHotels() {
     try {
@@ -22,6 +24,7 @@ async function fetchHotels() {
         document.getElementById("hotel-list").innerHTML = "<p class='error'>⚠️ Failed to load hotels.</p>";
     }
 }
+
 
 function displayHotels(hotels) {
     const hotelList = document.getElementById("hotel-list");
@@ -39,6 +42,28 @@ function displayHotels(hotels) {
                         ${hotel.availability ? "Available" : "Not Available"}
                     </span>
                 </p>
+
+                <!-- Booking Form -->
+                <div class="booking-container">
+                    <h4>Book this hotel</h4>
+                    <form class="booking-form" data-hotel-id="${hotel.id}">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" required>
+
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" required>
+
+                        <label for="check-in">Check-in Date:</label>
+                        <input type="date" name="checkIn" required>
+
+                        <label for="check-out">Check-out Date:</label>
+                        <input type="date" name="checkOut" required>
+
+                        <button type="submit">Book Now</button>
+                    </form>
+                    <p class="booking-message"></p>
+                </div>
+
                 <button class="delete-btn" data-id="${hotel.id}">Delete</button>
             </div>
         `;
@@ -46,7 +71,9 @@ function displayHotels(hotels) {
     });
 
     setupDeleteButtons();
+    setupBookingForms();
 }
+
 
 function sortHotels(order) {
     let hotels = JSON.parse(localStorage.getItem("hotels")) || [];
@@ -59,6 +86,7 @@ function sortHotels(order) {
     return hotels;
 }
 
+
 function filterHotels(availability, hotels) {
     if (availability === "available") {
         hotels = hotels.filter(hotel => hotel.availability);
@@ -67,6 +95,7 @@ function filterHotels(availability, hotels) {
     localStorage.setItem("availabilityFilter", availability);
     return hotels;
 }
+
 
 function applyFilters() {
     const sortOrder = document.getElementById("sort").value;
@@ -79,10 +108,12 @@ function applyFilters() {
     displayHotels(hotels);
 }
 
+
 function setupEventListeners() {
     document.getElementById("filter-btn").addEventListener("click", applyFilters);
     document.getElementById("sort").addEventListener("change", applyFilters);
 }
+
 
 function applyStoredPreferences() {
     const sortOrder = localStorage.getItem("sortOrder") || "default";
@@ -94,6 +125,7 @@ function applyStoredPreferences() {
     applyFilters();
 }
 
+
 function setupDeleteButtons() {
     document.querySelectorAll(".delete-btn").forEach(button => {
         button.addEventListener("click", async (event) => {
@@ -104,6 +136,7 @@ function setupDeleteButtons() {
         });
     });
 }
+
 
 async function deleteHotel(hotelId) {
     try {
@@ -122,18 +155,81 @@ async function deleteHotel(hotelId) {
     }
 }
 
-function showLoading(isLoading) {
-    const loadingElement = document.getElementById("loading");
-    if (loadingElement) {
-        loadingElement.style.display = isLoading ? "block" : "none";
-    }
+
+function setupBookingForms() {
+    document.querySelectorAll(".booking-form").forEach(form => {
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const hotelId = form.getAttribute("data-hotel-id");
+            const formData = new FormData(form);
+            const checkInDate = new Date(formData.get("checkIn"));
+            const checkOutDate = new Date(formData.get("checkOut"));
+
+            
+            if (checkOutDate <= checkInDate) {
+                showToast("Check-out date must be after check-in date!", "error");
+                return;
+            }
+
+            const booking = {
+                id: Date.now(),
+                hotelId: hotelId,
+                name: formData.get("name"),
+                email: formData.get("email"),
+                checkIn: formData.get("checkIn"),
+                checkOut: formData.get("checkOut")
+            };
+
+            saveBooking(booking);
+            form.reset();
+            showToast("Booking confirmed!", "success");
+
+            loadBookings();
+        });
+    });
 }
 
-function showToast(message, type) {
-    const toast = document.createElement("div");
-    toast.classList.add("toast", type);
-    toast.textContent = message;
 
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 3000);
+function saveBooking(booking) {
+    let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+    bookings.push(booking);
+    localStorage.setItem("bookings", JSON.stringify(bookings));
+}
+
+
+function loadBookings() {
+    const bookingContainer = document.getElementById("active-bookings");
+    bookingContainer.innerHTML = "<h2>Active Bookings</h2>";
+
+    let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+    if (bookings.length === 0) {
+        bookingContainer.innerHTML += "<p>No active bookings.</p>";
+        return;
+    }
+
+    bookings.forEach(booking => {
+        const bookingItem = document.createElement("div");
+        bookingItem.classList.add("booking-item");
+        bookingItem.innerHTML = `
+            <p><strong>${booking.name}</strong> booked from <strong>${booking.checkIn}</strong> to <strong>${booking.checkOut}</strong></p>
+            <button class="delete-booking-btn" data-id="${booking.id}">❌ Cancel</button>
+        `;
+        bookingContainer.appendChild(bookingItem);
+    });
+
+    setupDeleteBookingButtons();
+}
+
+function setupDeleteBookingButtons() {
+    document.querySelectorAll(".delete-booking-btn").forEach(button => {
+        button.addEventListener("click", (event) => {
+            const bookingId = event.target.getAttribute("data-id");
+            let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+            bookings = bookings.filter(booking => booking.id !== parseInt(bookingId));
+            localStorage.setItem("bookings", JSON.stringify(bookings));
+
+            showToast("Booking canceled!", "error");
+            loadBookings();
+        });
+    });
 }
