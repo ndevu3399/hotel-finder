@@ -31,7 +31,6 @@ function displayHotels(hotels) {
         const hotelCard = document.createElement("div");
         hotelCard.classList.add("hotel-card");
         hotelCard.innerHTML = `
-            <img src="./images/${hotel.image}" alt="${hotel.name}">
             <div class="hotel-info">
                 <h3>${hotel.name}</h3>
                 <p>Price: <strong>$${hotel.price}</strong> per night</p>
