@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const availabilityFilter = document.getElementById("availability-filter");
     const searchInput = document.getElementById("search-hotel");
     const sortSelect = document.getElementById("sort-price");
+    const imageUrl = hotel.image ? hotel.image : "images/default-hotel.jpg";
+
 
     if (!hotelsContainer || !citySelect || !availabilityFilter || !searchInput || !sortSelect) {
         console.error("One or more required elements are missing.");
