@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const data = await response.json();
             allHotels = data;
             populateCityOptions(data);
-            filterHotels(); // Display hotels based on the selected city
+            filterHotels();
         } catch (error) {
             console.error("Error fetching hotels:", error);
             hotelsContainer.innerHTML = "<p class='error'>Failed to load hotels. Please try again later.</p>";
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function populateCityOptions(hotels) {
-        const cities = new Set(hotels.map(hotel => hotel.city));
+        const cities = new Set(hotels.map(hotel => hotel.location)); // Fixed: Using 'location' instead of 'city'
         citySelect.innerHTML = '<option value="all">All Cities</option>';
 
         cities.forEach(city => {
@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
             citySelect.appendChild(option);
         });
 
-        // Automatically filter hotels based on the first available city
         if (cities.size > 0) {
             citySelect.value = [...cities][0];
         }
@@ -68,9 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
             hotelCard.innerHTML = `
                 <img src="${imageUrl}" alt="${hotel.name}" class="hotel-image">
                 <h3>${hotel.name}</h3>
-                <p>City: ${hotel.city}</p>
+                <p>City: ${hotel.location}</p>  <!-- Fixed: Using 'location' -->
                 <p>Rooms Available: ${roomsText}</p>
-                <p>Price: $${hotel.price_per_night}/night</p>
+                <p>Price: $${hotel.price}/night</p> <!-- Fixed: Using 'price' instead of 'price_per_night' -->
                 <button class="book-btn" data-id="${hotel.id}" ${disabledAttr}>Book Now</button>
             `;
 
@@ -113,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let filteredHotels = allHotels;
 
         if (citySelect.value !== "all") {
-            filteredHotels = filteredHotels.filter(hotel => hotel.city === citySelect.value);
+            filteredHotels = filteredHotels.filter(hotel => hotel.location === citySelect.value); // Fixed: Using 'location'
         }
 
         if (availabilityFilter.checked) {
@@ -126,9 +125,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (sortSelect.value === "low-high") {
-            filteredHotels.sort((a, b) => a.price_per_night - b.price_per_night);
+            filteredHotels.sort((a, b) => a.price - b.price); // Fixed: Using 'price'
         } else if (sortSelect.value === "high-low") {
-            filteredHotels.sort((a, b) => b.price_per_night - a.price_per_night);
+            filteredHotels.sort((a, b) => b.price - a.price); // Fixed: Using 'price'
         }
 
         displayHotels(filteredHotels);
