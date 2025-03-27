@@ -5,128 +5,112 @@
       "name": "Nairobi Grand Hotel",
       "location": "Nairobi",
       "price": 120,
-      "rooms_available": 0,
-      "image": "images/hotel1.jpg"
+      "rooms_available": 0
     },
     {
       "id": "2",
       "name": "Skyline Suites Nairobi",
       "location": "Nairobi",
       "price": 150,
-      "rooms_available": 8,
-      "image":"images/hotel2.jpg"
+      "rooms_available": 8
     },
     {
       "id": "3",
       "name": "Serene Garden Hotel",
       "location": "Nairobi",
       "price": 100,
-      "rooms_available": 12,
-      "image": "hotel1.jpg"
+      "rooms_available": 12
     },
     {
       "id": "4",
       "name": "Elite Stay Nairobi",
       "location": "Nairobi",
       "price": 180,
-      "rooms_available": 5,
-      "image": "images/hotel1.jpg"
+      "rooms_available": 5
     },
     {
       "id": "5",
       "name": "Mombasa Beach Resort",
       "location": "Mombasa",
       "price": 200,
-      "rooms_available": 7,
-      "image": "images/hotel1.jpg"
+      "rooms_available": 7
     },
     {
       "id": "6",
       "name": "Coastal Comfort Hotel",
       "location": "Mombasa",
       "price": 170,
-      "rooms_available": 6,
-      "image": "images/hotel1.jpg"
+      "rooms_available": 6
     },
     {
       "id": "7",
       "name": "Golden Sands Retreat",
       "location": "Mombasa",
       "price": 220,
-      "rooms_available": 9,
-      "image": "images/hotel1.jpg"
+      "rooms_available": 9
     },
     {
       "id": "8",
       "name": "Seaview Paradise",
       "location": "Mombasa",
       "price": 250,
-      "rooms_available": 4,
-      "image": "images/hotel1.jpg"
+      "rooms_available": 4
     },
     {
       "id": "9",
       "name": "Kisumu Lakefront Hotel",
       "location": "Kisumu",
       "price": 140,
-      "rooms_available": 6,
-      "image": "images/hotel1.jpg"
+      "rooms_available": 6
     },
     {
       "id": "10",
       "name": "Sunset Haven Kisumu",
       "location": "Kisumu",
       "price": 130,
-      "rooms_available": 8,
-      "image": "images/hotel1.jpg"
+      "rooms_available": 8
     },
     {
       "id": "11",
       "name": "Serenity Bay Kisumu",
       "location": "Kisumu",
       "price": 160,
-      "rooms_available": 5,
-      "image": "images/hotel1.jpg"
+      "rooms_available": 5
     },
     {
       "id": "12",
       "name": "Lakeview Retreat",
       "location": "Kisumu",
       "price": 180,
-      "rooms_available": 7,
-      "image": "images/hotel1.jpg"
+      "rooms_available": 7
     },
     {
       "id": "13",
       "name": "Nakuru Safari Lodge",
       "location": "Nakuru",
       "price": 150,
-      "rooms_available": 9,
-      "image": "images/hotel1.jpg"
+      "rooms_available": 9
     },
     {
       "id": "14",
       "name": "Rift Valley Comfort",
       "location": "Nakuru",
       "price": 140,
-      "rooms_available": 6,
-      "image": "images/hotel1.jpg"
+      "rooms_available": 6
     },
     {
       "id": "15",
       "name": "Wild Escape Nakuru",
       "location": "Nakuru",
       "price": 170,
-      "rooms_available": 5,
-      "image": "images/hotel1.jpg"
+      "rooms_available": 5
     },
     {
       "id": "16",
       "name": "Savannah Resort",
       "location": "Nakuru",
       "price": 200,
-      "rooms_available": 3,
-      "image": "images/hotel1.jpg"
+      "rooms_available": 3
     }
   ]
 }
