@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     showLoading(false);
 });
 
-// Fetch hotels from API
+
 async function fetchHotels() {
     try {
         const response = await fetch(API_URL);
@@ -24,7 +24,7 @@ async function fetchHotels() {
     }
 }
 
-// Display hotels
+
 function displayHotels(hotels) {
     const hotelList = document.getElementById("hotel-list");
     hotelList.innerHTML = hotels.length ? "" : "<p>No hotels available.</p>";
@@ -51,7 +51,7 @@ function displayHotels(hotels) {
     setupDeleteButtons();
 }
 
-// Sorting function
+
 function sortHotels(order) {
     let hotels = JSON.parse(localStorage.getItem("hotels")) || [];
     
@@ -63,7 +63,7 @@ function sortHotels(order) {
     return hotels;
 }
 
-// Filtering function
+
 function filterHotels(availability, hotels) {
     if (availability === "available") {
         hotels = hotels.filter(hotel => hotel.available);
@@ -73,7 +73,7 @@ function filterHotels(availability, hotels) {
     return hotels;
 }
 
-// Search Button - Apply Sorting & Filtering
+
 function applyFilters() {
     const sortOrder = document.getElementById("sort").value;
     const availabilityFilter = document.getElementById("availability").value;
@@ -85,13 +85,13 @@ function applyFilters() {
     displayHotels(hotels);
 }
 
-// Setup event listeners
+
 function setupEventListeners() {
     document.getElementById("filter-btn").addEventListener("click", applyFilters);
     document.getElementById("sort").addEventListener("change", applyFilters);
 }
 
-// Apply stored preferences on page load
+
 function applyStoredPreferences() {
     const sortOrder = localStorage.getItem("sortOrder") || "default";
     const availabilityFilter = localStorage.getItem("availabilityFilter") || "all";
@@ -102,7 +102,7 @@ function applyStoredPreferences() {
     applyFilters();
 }
 
-// Setup delete buttons
+
 function setupDeleteButtons() {
     document.querySelectorAll(".delete-btn").forEach(button => {
         button.addEventListener("click", async (event) => {
@@ -114,7 +114,7 @@ function setupDeleteButtons() {
     });
 }
 
-// Delete hotel from API & UI
+
 async function deleteHotel(hotelId) {
     try {
         const response = await fetch(`${API_URL}/${hotelId}`, { method: "DELETE" });
@@ -132,7 +132,7 @@ async function deleteHotel(hotelId) {
     }
 }
 
-// Show or hide loading spinner
+
 function showLoading(isLoading) {
     const loadingElement = document.getElementById("loading");
     if (loadingElement) {
@@ -140,7 +140,7 @@ function showLoading(isLoading) {
     }
 }
 
-// Display toast message
+
 function showToast(message, type) {
     const toast = document.createElement("div");
     toast.classList.add("toast", type);
